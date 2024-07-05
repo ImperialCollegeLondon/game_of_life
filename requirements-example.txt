@@ -8,29 +8,49 @@ bottleneck==1.4.0
     # via MUSE_OS (pyproject.toml)
 coloredlogs==15.0.1
     # via MUSE_OS (pyproject.toml)
+contourpy==1.2.1
+    # via matplotlib
+cycler==0.12.1
+    # via matplotlib
+fonttools==4.53.1
+    # via matplotlib
 humanfriendly==10.0
     # via coloredlogs
+kiwisolver==1.4.5
+    # via matplotlib
+matplotlib==3.9.1
+    # via MUSE_OS (pyproject.toml)
 mypy-extensions==1.0.0
     # via MUSE_OS (pyproject.toml)
 numpy==1.26.4
     # via
     #   MUSE_OS (pyproject.toml)
     #   bottleneck
+    #   contourpy
+    #   matplotlib
     #   pandas
     #   scipy
     #   xarray
 packaging==24.1
-    # via xarray
+    # via
+    #   matplotlib
+    #   xarray
 pandas==2.2.2
     # via
     #   MUSE_OS (pyproject.toml)
     #   xarray
+pillow==10.4.0
+    # via matplotlib
+pyparsing==3.1.2
+    # via matplotlib
 pypubsub==4.0.3
     # via MUSE_OS (pyproject.toml)
 pyreadline3==3.4.1
     # via humanfriendly
 python-dateutil==2.9.0.post0
-    # via pandas
+    # via
+    #   matplotlib
+    #   pandas
 pytz==2024.1
     # via pandas
 scipy==1.14.0
