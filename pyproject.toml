@@ -1,7 +1,7 @@
 [project]
 name = "GoL"
 version = "0.1"
-dependencies = ["numpy", "scipy",  "matplotlib", "tensorflow"]
+dependencies = ["numpy", "scipy",  "matplotlib"]
 requires-python = ">=3.10"
 
 [build-system]
