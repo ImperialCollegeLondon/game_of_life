@@ -103,6 +103,7 @@ def main():
     parser.add_argument("--interval", dest="interval", required=False)
     parser.add_argument("--glider", action="store_true", required=False)
     parser.add_argument("--gosper", action="store_true", required=False)
+    parser.add_argument("--no-show", action="store_true", required=False)
     args = parser.parse_args()
 
     # set grid size
@@ -151,7 +152,8 @@ def main():
         writervideo = animation.PillowWriter(fps=30)
         ani.save(args.movfile, writer=writervideo)
 
-    plt.show()
+    if not args.no_show:
+        plt.show()
 
 
 # call main
