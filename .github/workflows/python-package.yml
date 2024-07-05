@@ -29,4 +29,4 @@ jobs:
         python -m pip install --upgrade pip
         python -m pip install -r requirements.txt
     - name: Run Game of Life
-      run: python GoL.py --mov-file gol.gif --no-show
+      run: python GoL.py --mov-file gol.gif --no-show --grid-size 500
