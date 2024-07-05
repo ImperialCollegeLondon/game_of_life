@@ -1,0 +1,9 @@
+[project]
+name = "GoL"
+version = "0.1"
+dependencies = ["numpy", "scipy",  "matplotlib", "tensorflow"]
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
