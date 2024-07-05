@@ -19,7 +19,6 @@ numpy==1.26.4
     #   GoL (pyproject.toml)
     #   contourpy
     #   matplotlib
-    #   scipy
 packaging==24.1
     # via matplotlib
 pillow==10.4.0
@@ -28,7 +27,5 @@ pyparsing==3.1.2
     # via matplotlib
 python-dateutil==2.9.0.post0
     # via matplotlib
-scipy==1.14.0
-    # via GoL (pyproject.toml)
 six==1.16.0
     # via python-dateutil

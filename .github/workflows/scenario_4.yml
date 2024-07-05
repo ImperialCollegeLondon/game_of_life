@@ -1,0 +1,86 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: scenario_4
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  ECO_CI_JSON_OUTPUT: "true"
+
+jobs:
+  build_4:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        python-version: ["3.9", "3.12"]
+
+    steps:
+    - name: Energy - Start Measurement
+      if: matrix.os == 'ubuntu-latest'
+      uses: green-coding-solutions/eco-ci-energy-estimation@v3
+      with:
+        task: start-measurement
+      continue-on-error: true
+
+    - uses: actions/checkout@v4
+
+    - name: Energy - Checkout Repo
+      if: matrix.os == 'ubuntu-latest'
+      uses: green-coding-solutions/eco-ci-energy-estimation@v3
+      with:
+        task: get-measurement
+        label: 'repo checkout'
+      continue-on-error: true
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v3
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: "pip"
+        cache-dependency-path: "requirements-example.txt"
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements-example.txt
+
+    - name: Energy - Python setup
+      if: matrix.os == 'ubuntu-latest'
+      uses: green-coding-solutions/eco-ci-energy-estimation@v3
+      with:
+        task: get-measurement
+        label: 'python setup'
+      continue-on-error: true
+      
+    - name: Run Game of Life
+      run: python GoL.py --mov-file gol.gif --no-show --grid-size 500
+
+    - name: Energy - Run Game of Life
+      if: matrix.os == 'ubuntu-latest'
+      uses: green-coding-solutions/eco-ci-energy-estimation@v3
+      with:
+        task: get-measurement
+        label: 'run GoL'
+      continue-on-error: true
+
+    - name: Energy - Show Energy Results
+      if: matrix.os == 'ubuntu-latest'
+      id: total-measurement-step
+      uses: green-coding-solutions/eco-ci-energy-estimation@v3
+      with:
+        task: display-results
+        pr-comment: true
+      continue-on-error: true
+    
+    - name: Print total data
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        echo "total json: ${{ steps.total-measurement-step.outputs.data-total-json }}"
